@@ -11,3 +11,4 @@ vite.config.ts.timestamp-*
 /backend/venv
 /backend/db.sqlite3
 /backend/storage
+/backend/__pycache__/
