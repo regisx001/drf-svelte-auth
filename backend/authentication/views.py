@@ -4,6 +4,12 @@ from .models import User
 from .serializers import UserSerializer
 
 
-class ListCreateUser(generics.ListCreateAPIView):
+class CreateUser(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class RetrieveUser(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_field = "username"
