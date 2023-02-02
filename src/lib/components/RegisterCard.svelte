@@ -1,28 +1,23 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
+
+	export let form: any;
 </script>
 
 <article class="login">
 	<div class="header"><h1>Register</h1></div>
-	<form action="." method="post">
-		<label for="email">Email</label>
-		<input
-			class="input"
-			type="text"
-			id="email"
-			name="email"
-			required
-			placeholder="E.g example@gmail.com"
-		/>
+	<form action="?/register" method="post" use:enhance>
+		<label for="username">Username</label>
+		<input class="input" type="text" id="username" name="username" placeholder="E.g denisIv" />
+		{#if form?.username}
+			<p class="error">required</p>
+		{/if}
 
 		<label for="password">Password</label>
-		<input
-			class="input"
-			type="password"
-			id="password"
-			name="password"
-			placeholder="password"
-			required
-		/>
+		<input class="input" type="password" id="password" name="password" placeholder="password" />
+		{#if form?.password}
+			<p class="error">required</p>
+		{/if}
 
 		<label for="confirmPassword">Confirm Password</label>
 		<input
@@ -31,8 +26,10 @@
 			id="confirmPassword"
 			placeholder="confirm password"
 			name="confirmPassword"
-			required
 		/>
+		{#if form?.confirmPassword}
+			<p class="error">Password Do not match</p>
+		{/if}
 
 		<div class="submit">
 			<button type="submit">Register</button>
@@ -56,5 +53,9 @@
 	}
 	.submit {
 		margin: 10px 0;
+	}
+	.error {
+		font-size: 15px;
+		color: red;
 	}
 </style>
