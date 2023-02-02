@@ -1,5 +1,5 @@
 import { PUBLIC_DOMAIN } from "$env/static/public";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
 
 export const load: PageServerLoad = async () => {
@@ -26,7 +26,21 @@ export const actions: Actions = {
             method: "POST",
             body: formData
         })
+        const jsonData = await response.json()
 
-        console.log(await response.json())
+        if (response.status === 200) {
+            cookies.set("refresh", jsonData.refresh, {
+                path: "/",
+                httpOnly: true,
+                maxAge: 60 * 60 * 24 * 30,
+            })
+
+            cookies.set("access", jsonData.access, {
+                path: "/",
+                httpOnly: true,
+                maxAge: 60 * 60 * 24,
+            })
+            throw redirect(300, "/")
+        }
     }
 };
