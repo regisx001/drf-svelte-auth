@@ -1,7 +1,6 @@
 <script lang="ts">
 	import avatar from '$lib/images/pro.png';
 	export let user: any;
-	console.log(user);
 	type Link = {
 		link: string;
 		name: string;
