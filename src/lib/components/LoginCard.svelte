@@ -13,6 +13,7 @@
 			name="email"
 			required
 		/>
+
 		<label for="password">Password</label>
 		<input
 			class="input"
