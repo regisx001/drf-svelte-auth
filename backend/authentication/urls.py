@@ -9,7 +9,9 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     path("register/", views.CreateUser.as_view()),
+    #
     path("users/<str:username>/", views.RetrieveUser.as_view()),
+    path("user/data/", views.RetreiveUserData.as_view()),
     #
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
