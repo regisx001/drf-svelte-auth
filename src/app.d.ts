@@ -5,8 +5,8 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			user: {
-				// id: number
-				// username: string
+				id: number
+				username: string
 				refreshToken: string
 				accessToken: string
 			}

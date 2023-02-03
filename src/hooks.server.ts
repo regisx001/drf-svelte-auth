@@ -1,6 +1,16 @@
 import { PUBLIC_DOMAIN } from "$env/static/public";
 import type { Handle } from "@sveltejs/kit";
 
+async function getUserData(accessToken: string) {
+    const response = await (await fetch(`${PUBLIC_DOMAIN}auth/user/data/`, {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer  ${accessToken}`
+        }
+    })).json()
+    // console.log(response)
+    return response
+}
 
 export const handle: Handle = async ({ resolve, event }) => {
 
@@ -30,7 +40,12 @@ export const handle: Handle = async ({ resolve, event }) => {
                 maxAge: 60 * 60 * 24,
             })
 
+            // Fetch User Data
+            const userData = await getUserData(accessToken)
+
             event.locals.user = {
+                id: userData.id,
+                username: userData.username,
                 accessToken: String(accessToken),
                 refreshToken: String(refresh)
             }
@@ -50,7 +65,13 @@ export const handle: Handle = async ({ resolve, event }) => {
     })
 
     if (verification_response.status === 200) {
+        // Fetch User Data
+        const userData = await getUserData(access)
+
+
         event.locals.user = {
+            id: userData.id,
+            username: userData.username,
             accessToken: String(access),
             refreshToken: String(refresh),
         }
