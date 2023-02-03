@@ -42,6 +42,7 @@
 		left: 50%;
 		transform: translate(-50%, -50%);
 		width: 700px;
+		max-width: 800px;
 	}
 	/* Handle Profile Picture */
 	.picture {

@@ -20,3 +20,11 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        exclude = ["groups", "user_permissions",
+                   "is_superuser", "is_staff", "is_active", "password"]
