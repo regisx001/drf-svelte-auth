@@ -34,8 +34,7 @@ export const actions: Actions = {
             method: "POST",
             body: formData
         })
-        if (response.status === 200) {
-            throw redirect(300, "/login")
-        }
+
+        throw redirect(300, "/login")
     }
 };

@@ -46,6 +46,10 @@ export const handle: Handle = async ({ resolve, event }) => {
             event.locals.user = {
                 id: userData.id,
                 username: userData.username,
+                first_name: userData.first_name,
+                last_name: userData.last_name,
+                email: userData.email,
+                avatar: userData.avatar,
                 accessToken: String(accessToken),
                 refreshToken: String(refresh)
             }
@@ -72,6 +76,10 @@ export const handle: Handle = async ({ resolve, event }) => {
         event.locals.user = {
             id: userData.id,
             username: userData.username,
+            first_name: userData.first_name,
+            last_name: userData.last_name,
+            email: userData.email,
+            avatar: userData.avatar,
             accessToken: String(access),
             refreshToken: String(refresh),
         }

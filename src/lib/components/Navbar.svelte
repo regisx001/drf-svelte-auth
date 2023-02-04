@@ -1,5 +1,7 @@
 <script lang="ts">
-	import avatar from '$lib/images/pro.png';
+	import { PUBLIC_DOMAIN } from '$env/static/public';
+	import avatar from '$lib/images/avatar.svg';
+
 	export let user: any;
 	type Link = {
 		link: string;
@@ -18,12 +20,17 @@
 	<div class="links">
 		<!-- Logged in -->
 		{#if user}
-			<a href="/profile">
-				<ul>
-					<li><img src={avatar} class="avatar" alt="" /></li>
-					<li><div>@username</div></li>
-				</ul>
-			</a>
+			<ul>
+				{#if user?.avatar}
+					<a href="/profile">
+						<li><img src={PUBLIC_DOMAIN + user.avatar} class="avatar" alt="" /></li></a
+					>
+				{:else}
+					<a href="/profile"><li><img src={avatar} class="avatar" alt="" /></li></a>
+				{/if}
+				<li><div>@{user.username}</div></li>
+				<li><a data-sveltekit-reload href="/logout">Logout</a></li>
+			</ul>
 		{:else}
 			<!-- Not Logged in -->
 			<ul>
