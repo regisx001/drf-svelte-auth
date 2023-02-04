@@ -28,3 +28,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = User
         exclude = ["groups", "user_permissions",
                    "is_superuser", "is_staff", "is_active", "password"]
+        extra_kwargs = {
+            "username": {
+                "read_only": True
+            }
+        }

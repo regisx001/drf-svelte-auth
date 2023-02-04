@@ -4,4 +4,4 @@
 	export let data: PageData;
 </script>
 
-<Profile />
+<Profile user={data.user} />

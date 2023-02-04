@@ -1,5 +1,14 @@
 <script lang="ts">
-	let avatar: string = 'avatar.svg';
+	import { PUBLIC_DOMAIN } from '$env/static/public';
+
+	export let user: any;
+
+	let avatar: string;
+	if (user.avatar) {
+		avatar = PUBLIC_DOMAIN + user.avatar;
+	} else {
+		avatar = 'avatar.svg';
+	}
 	function loadAvatar(e: Event) {
 		// @ts-ignore
 		const newAvatar = e.target.files[0];
@@ -13,16 +22,15 @@
 	</header>
 	<div class="picture">
 		<img src={avatar} class="avatar" alt="" />
-		<form action="." method="post">
-			<input
-				on:change={loadAvatar}
-				type="file"
-				name="avatar"
-				accept="image/png, image/gif, image/jpeg"
-			/>
 
-			<label for="username">Username</label>
-			<input type="text" readonly name="username" id="username" />
+		<form action="?/updateProfile" method="post">
+			<input on:change={loadAvatar} type="file" name="avatar" />
+
+			<label for="username">First Name</label>
+			<input type="text" name="first_name" id="username" />
+
+			<label for="username">Last Name</label>
+			<input type="text" name="last_name" id="username" />
 
 			<label for="email">Email</label>
 			<input type="text" name="email" id="email" />
